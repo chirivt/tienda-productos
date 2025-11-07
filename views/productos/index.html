@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dulces La Tradición | Productos</title>
+  <link rel="stylesheet" href="../styles/styles.css">
+</head>
+<!-- Botón flotante del carrito -->
+<a href="../cart/index.html" class="boton-carrito-flotante" title="Ver carrito">
+  🛒
+  <span id="contadorCarrito">0</span>
+</a>
+
+<script src="../components/cart-badge.js"></script>
+
+<body>
+  <header>
+    <h1>Dulces La Tradición</h1>
+    <nav>
+      <a href="../home/index.html">Inicio</a>
+      <a href="#">Productos</a>
+      <a href="#" id="verCarrito">🛒 Carrito (<span id="cantidadCarrito">0</span>)</a>
+    </nav>
+  </header>
+
+  <main class="contenedor-productos" id="contenedorProductos"></main>
+
+  <!-- Modal del carrito -->
+  <div id="carritoModal" class="modal">
+    <div class="modal-content">
+      <span class="cerrar">&times;</span>
+      <h2>Tu carrito</h2>
+      <div id="listaCarrito"></div>
+      <p id="total"></p>
+      <button id="finalizarCompra">Finalizar compra por WhatsApp</button>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2025 Dulces La Tradición. Todos los derechos reservados.</p>
+  </footer>
+
+  <script>
+    // Lista de productos con imágenes locales
+    const productos = [
+      { id: 1, nombre: "Catalina", precio: 2.5, imagen: "../../img/catalinas.jpg" },
+      { id: 2, nombre: "Palmeritas", precio: 1.5, imagen: "../../img/palmeritas.jpg" },
+      { id: 3, nombre: "Conservas de coco", precio: 3.0, imagen: "../../img/galletas.jpg" },
+      { id: 4, nombre: "Galletas de avena", precio: 2.5, imagen: "../../img/galletas de avena.jpg" },
+      { id: 5, nombre: "Polvorosas", precio: 3.0, imagen: "../../img/polvorosas.jpg" },
+      { id: 6, nombre: "Alfajores", precio: 3.0, imagen: "../../img/alfajores.jpeg" },
+      { id: 7, nombre: "Suspiros", precio: 3.0, imagen: "../../img/suspiros.jpeg" },
+      { id: 8, nombre: "Galletas de chocolate", precio: 3.0, imagen: "../../img/galletas chispas de chocolate.jpg" }
+    ];
+
+    const contenedorProductos = document.getElementById('contenedorProductos');
+    const cantidadCarrito = document.getElementById('cantidadCarrito');
+    const modal = document.getElementById('carritoModal');
+    const cerrarModal = document.querySelector('.cerrar');
+    const listaCarrito = document.getElementById('listaCarrito');
+    const total = document.getElementById('total');
+    const btnFinalizar = document.getElementById('finalizarCompra');
+
+    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
+
+    // Renderizar productos
+    function mostrarProductos() {
+      contenedorProductos.innerHTML = "";
+      productos.forEach(prod => {
+        const card = document.createElement('div');
+        card.classList.add('producto');
+        card.innerHTML = `
+          <img src="${prod.imagen}" alt="${prod.nombre}">
+          <h3>${prod.nombre}</h3>
+          <p>$${prod.precio.toFixed(2)}</p>
+          <button onclick="agregarAlCarrito(${prod.id})">Agregar al carrito</button>
+        `;
+        contenedorProductos.appendChild(card);
+      });
+    }
+
+    // Agregar al carrito
+    function agregarAlCarrito(id) {
+      const producto = productos.find(p => p.id === id);
+      const existente = carrito.find(p => p.id === id);
+
+      if (existente) {
+        existente.cantidad++;
+      } else {
+        carrito.push({ ...producto, cantidad: 1 });
+      }
+
+      localStorage.setItem('carrito', JSON.stringify(carrito));
+      actualizarCantidad();
+    }
+
+    // Actualizar cantidad mostrada en el ícono
+    function actualizarCantidad() {
+      const totalItems = carrito.reduce((acc, p) => acc + p.cantidad, 0);
+      cantidadCarrito.textContent = totalItems;
+    }
+
+    // Mostrar carrito
+    function mostrarCarrito() {
+      listaCarrito.innerHTML = "";
+      let totalCompra = 0;
+
+      carrito.forEach(item => {
+        totalCompra += item.precio * item.cantidad;
+        const div = document.createElement('div');
+        div.classList.add('item-carrito');
+        div.innerHTML = `
+          <span>${item.nombre} x${item.cantidad}</span>
+          <span>$${(item.precio * item.cantidad).toFixed(2)}</span>
+        `;
+        listaCarrito.appendChild(div);
+      });
+
+      total.textContent = `Total: $${totalCompra.toFixed(2)}`;
+    }
+
+    // Finalizar compra
+    btnFinalizar.addEventListener('click', () => {
+      const numero = "5804129066038";
+      let mensaje = "🛍️ *Pedido de Dulces La Tradición:*%0A%0A";
+
+      carrito.forEach(item => {
+        mensaje += `🍬 ${item.nombre} x${item.cantidad} = $${(item.precio * item.cantidad).toFixed(2)}%0A`;
+      });
+
+      const totalCompra = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
+      mensaje += `%0A💰 *Total:* $${totalCompra.toFixed(2)}%0A%0A📍Por favor, confirma tu pedido.`;
+
+      const url = `https://wa.me/${numero}?text=${mensaje}`;
+      window.open(url, "_blank");
+    });
+
+    // Modal control
+    document.getElementById('verCarrito').addEventListener('click', () => {
+      mostrarCarrito();
+      modal.style.display = "block";
+    });
+
+    cerrarModal.onclick = () => (modal.style.display = "none");
+    window.onclick = e => { if (e.target === modal) modal.style.display = "none"; };
+
+    mostrarProductos();
+    actualizarCantidad();
+  </script>
+</body>
+</html>

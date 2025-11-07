@@ -11,11 +11,17 @@ form.addEventListener("submit",async  e =>{
             email: emailInput.value,
             password: passwordInput.value
             }
-            await axios.post("/api/login",user)
+
+            console.log("Intentando iniciar sesión con:", user);
+            
+
+            const response = await axios.post("/api/login",user);
+            console.log('response is:', response);
+            
 
             console.log('Login exitoso');
             
-            window.location.pathname =  `/todos/`
+            window.location.pathname =  `/admin/`
   
         
     } catch (error) {

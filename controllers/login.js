@@ -3,7 +3,7 @@ const User = require("../models/user")
 const bcrypt = require("bcrypt");
 const usersRouter = require("./users");
 const jwt = require("jsonwebtoken");
-const { response } = require("express");
+
 
 
 loginRouter.post("/", async (req,res) =>{
@@ -12,8 +12,10 @@ loginRouter.post("/", async (req,res) =>{
     const { email, password} = req.body
     console.log('email en login controler', email);
 
+    const correo = String(email).toLowerCase().trim();
+
     //comprobar si el usuario existe en la base de datos
-    const userExist = await User.findOne({email});
+    const userExist = await User.findOne({ email: correo });
 
 
     console.log('userExist:', userExist);

@@ -1,51 +1,80 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=, initial-scale=1.0" />
-    <link rel="stylesheet" href="../styles/output.css">
-    
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-    <title>TodoApp</title>
-  </head>
-  <body>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dulces La Tradición</title>
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<!-- Botón flotante del carrito -->
+<a href="../cart/index.html" class="boton-carrito-flotante" title="Ver carrito">
+  🛒
+  <span id="contadorCarrito">0</span>
+</a>
 
-    <nav
-      id="navbar"
-      class="fixed top-0 left-0 right-0 bg-indigo-700 h-16"
-    ></nav>
+<script src="../components/cart-badge.js"></script>
 
-    <!-- Imagen de ejemplo -->
-    <div class="flex justify-center mt-8">
-      
+<body>
+  <header>
+    <h1>Dulces La Tradición</h1>
+    <p>Sabores artesanales con historia</p>
+  </header>
+
+  <main class="productos">
+    <div class="producto">
+      <img src="../../img/alfajores.jpeg" alt="Alfajores" />
+      <h3>Alfajores</h3>
+      <p>$2.50 / unidad</p>
+      <button onclick="comprar('Alfajores', '2.50')">Comprar por WhatsApp</button>
     </div>
 
-    <div
-      class="pt-16 h-screen flex justify-center items-center flex-col px-4 gap-4 md:flex-row lg:w-3/5 md:w-9/12 md:mx-auto md:gap-8"
-    >
-      <h1 class="text-indigo-700 font-bold text-4xl md:text-6xl">TodoApp</h1>
-      <div class="flex flex-col gap-4 md:text-xl">
-        <p class="text-justify">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae
-          doloremque architecto tempora dolorem dolore amet, modi sed velit
-          blanditiis nemo tempore. Facere quisquam libero enim illum voluptatum
-          quibusdam tenetur voluptas!
-        </p>
-        <div class="flex justify-around gap-4">
-          <a
-            class="bg-slate-600 py-2 px-4 rounded-lg text-white font-bold hover:bg-slate-700 w-2/4 text-center transition-ease-in-out delay-150"
-            href="/login/"
-            >Login</a
-          >
-          <a
-            class="bg-indigo-700 py-2 px-4 rounded-lg text-white font-bold hover:bg-indigo-800 w-2/4 text-center transition-ease-in-out delay-150"
-            href="/signup/"
-            >Registro</a
-          >
-        </div>
-      </div>
+    <div class="producto">
+      <img src="../../img/catalinas.jpg" alt="Catalinas" />
+      <h3>Catalinas</h3>
+      <p>$1.50 / unidad</p>
+      <button onclick="comprar('Catalinas', '1.50')">Comprar por WhatsApp</button>
     </div>
-    
-    <script src="../components/nav.js"></script>
-  </body>
+
+    <div class="producto">
+      <img src="../../img/galletas chispas de chocolate.jpg" alt="Galletas con chispas" />
+      <h3>Galletas con chispas</h3>
+      <p>$2.00 / unidad</p>
+      <button onclick="comprar('Galletas con chispas', '2.00')">Comprar por WhatsApp</button>
+    </div>
+
+    <div class="producto">
+      <img src="../../img/galletas de avena.jpg" alt="Galletas de avena" />
+      <h3>Galletas de avena</h3>
+      <p>$1.80 / unidad</p>
+      <button onclick="comprar('Galletas de avena', '1.80')">Comprar por WhatsApp</button>
+    </div>
+
+    <div class="producto">
+      <img src="../../img/galletas.jpg" alt="Galletas de chocolate" />
+      <h3>Galletas de chocolate</h3>
+      <p>$2.20 / unidad</p>
+      <button onclick="comprar('Galletas de chocolate', '2.20')">Comprar por WhatsApp</button>
+    </div>
+
+    <div class="producto">
+      <img src="../../img/palmeritas.jpg" alt="Palmeritas" />
+      <h3>Palmeritas</h3>
+      <p>$1.00 / unidad</p>
+      <button onclick="comprar('Palmeritas', '1.00')">Comprar por WhatsApp</button>
+    </div>
+
+    <div class="producto">
+      <img src="../../img/polvorosas.jpg" alt="Polvorosas" />
+      <h3>Polvorosas</h3>
+      <p>$1.50 / unidad</p>
+      <button onclick="comprar('Polvorosas', '1.50')">Comprar por WhatsApp</button>
+    </div>
+  </main>
+
+  <footer>
+    <p>© 2025 Dulces La Tradición. Todos los derechos reservados.</p>
+  </footer>
+
+  <script src="./main.js"></script>
+</body>
 </html>
