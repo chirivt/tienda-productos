@@ -3,123 +3,37 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Tu Carrito | Dulces La Tradición</title>
-  <link rel="stylesheet" href="../styles/styles.css">
+  <title>Carrito | Dulces La Tradición</title>
+  <link rel="stylesheet" href="../styles/output.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
-<!-- Botón flotante del carrito -->
-<a href="../cart/index.html" class="boton-carrito-flotante" title="Ver carrito">
-  🛒
-  <span id="contadorCarrito">0</span>
-</a>
-
-<script src="../components/cart-badge.js"></script>
 
 <body>
-  <header>
-    <h1>🛒 Tu Carrito</h1>
-    <nav>
-      <a href="../home/index.html">Inicio</a>
-      <a href="../productos/index.html">Productos</a>
+  <header class="header">
+    <h1 class="logo">🍪 Dulces La Tradición</h1>
+    <nav class="navigation">
+      <a href="..//" class="nav-button">Inicio</a>
+      <a href="../login/" class="nav-button">Login</a>
     </nav>
   </header>
 
-  <main class="carrito-container">
-    <h2>Resumen de tu pedido</h2>
-    <div id="listaCarrito"></div>
-    <p id="total"></p>
+  <section style="padding:2rem; text-align:center;">
+    <h2>Tu Carrito</h2>
+    <div id="cart-items"></div>
+    <h3 id="total-price">Total: $0.00</h3>
 
-    <div class="botones-carrito">
-      <button id="vaciarCarrito">Vaciar carrito</button>
-      <button id="finalizarCompra">Finalizar compra por WhatsApp</button>
+    <div style="margin-top:1.5rem;">
+   <a href="/" class="btn">Seguir comprando</a>
+
+      <button id="whatsapp-btn" class="btn">Finalizar compra</button>
     </div>
-  </main>
+  </section>
 
   <footer>
     <p>© 2025 Dulces La Tradición. Todos los derechos reservados.</p>
   </footer>
 
-  <script>
-    const listaCarrito = document.getElementById('listaCarrito');
-    const total = document.getElementById('total');
-    const btnVaciar = document.getElementById('vaciarCarrito');
-    const btnFinalizar = document.getElementById('finalizarCompra');
-    let carrito = JSON.parse(localStorage.getItem('carrito')) || [];
-
-    function mostrarCarrito() {
-      listaCarrito.innerHTML = "";
-      let totalCompra = 0;
-
-      if (carrito.length === 0) {
-        listaCarrito.innerHTML = "<p>Tu carrito está vacío 😢</p>";
-        total.textContent = "";
-        return;
-      }
-
-      carrito.forEach((item, index) => {
-        totalCompra += item.precio * item.cantidad;
-        const div = document.createElement('div');
-        div.classList.add('item-carrito');
-        div.innerHTML = `
-          <img src="${item.imagen}" alt="${item.nombre}">
-          <span>${item.nombre}</span>
-          <span>$${item.precio.toFixed(2)}</span>
-          <div class="cantidad">
-            <button onclick="cambiarCantidad(${index}, -1)">-</button>
-            <span>${item.cantidad}</span>
-            <button onclick="cambiarCantidad(${index}, 1)">+</button>
-          </div>
-          <span>$${(item.precio * item.cantidad).toFixed(2)}</span>
-          <button class="eliminar" onclick="eliminarProducto(${index})">❌</button>
-        `;
-        listaCarrito.appendChild(div);
-      });
-
-      total.textContent = `Total: $${totalCompra.toFixed(2)}`;
-    }
-
-    function cambiarCantidad(index, delta) {
-      carrito[index].cantidad += delta;
-      if (carrito[index].cantidad <= 0) carrito.splice(index, 1);
-      guardarYActualizar();
-    }
-
-    function eliminarProducto(index) {
-      carrito.splice(index, 1);
-      guardarYActualizar();
-    }
-
-    function guardarYActualizar() {
-      localStorage.setItem('carrito', JSON.stringify(carrito));
-      mostrarCarrito();
-    }
-
-    btnVaciar.addEventListener('click', () => {
-      if (confirm("¿Vaciar todo el carrito?")) {
-        carrito = [];
-        guardarYActualizar();
-      }
-    });
-
-    btnFinalizar.addEventListener('click', () => {
-      const numero = "5804129066038";
-      if (carrito.length === 0) {
-        alert("Tu carrito está vacío.");
-        return;
-      }
-
-      let mensaje = "🛍️ *Pedido de Dulces La Tradición:*%0A%0A";
-      carrito.forEach(item => {
-        mensaje += `🍬 ${item.nombre} x${item.cantidad} = $${(item.precio * item.cantidad).toFixed(2)}%0A`;
-      });
-
-      const totalCompra = carrito.reduce((acc, p) => acc + p.precio * p.cantidad, 0);
-      mensaje += `%0A💰 *Total:* $${totalCompra.toFixed(2)}%0A%0A📍Por favor, confirma tu pedido.`;
-
-      const url = `https://wa.me/${numero}?text=${mensaje}`;
-      window.open(url, "_blank");
-    });
-
-    mostrarCarrito();
-  </script>
+ <script src="index.js"></script>
+  <script type="module" src="../components/notification.js"></script>
 </body>
 </html>

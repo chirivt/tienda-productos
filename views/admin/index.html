@@ -1,49 +1,65 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Panel de Productos | Dulces La Tradición</title>
-  <link rel="stylesheet" href="index.css" />
-   
-    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panel de Administración | Dulces La Tradición</title>
+  <link rel="stylesheet" href="index.css">
+  <link rel="stylesheet" href="../index/output.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
 </head>
+
 <body>
-  <div id="notification" class="fixed top-20 right-0 left-0"></div>
-  <h1>🧁 Administración de Productos</h1>
+  <header class="header">
+    <h1 class="logo">🍪 Dulces La Tradición</h1>
+    <nav class="navigation">
+      <a href="..//" class="nav-button">home</a>
+    </nav>
+  </header>
 
-  <section id="form-section">
-    <h2 id="form-title">Agregar nuevo producto</h2>
+  <main style="padding:2rem;">
     <form id="producto-form">
+      
+      <h2>Agregar / Editar Producto</h2>
       <input type="hidden" id="producto-id">
-      <input type="text" id="nombre" placeholder="Nombre" required>
-      <input type="text" id="descripcion" placeholder="Descripción">
-      <input type="number" id="precio" placeholder="Precio" required>
-      <input type="text" id="imagen" placeholder="URL de imagen" required>
-      <button type="submit">Guardar</button>
-      <button type="button" id="cancelar-edicion" style="display:none;">Cancelar</button>
+      <input id="nombre" type="text" placeholder="Nombre del producto" required>
+      <input id="descripcion" type="text" placeholder="Descripción">
+      <input id="precio" type="number" placeholder="Precio" required>
+      <input id="imagen" type="text" placeholder="URL de imagen" required>
+      <button type="submit" class="btn">Guardar</button>
+       <button type="button" id="cancelar-edicion" style="display:none;">Cancelar</button>
     </form>
-  </section>
 
-  <section id="productos-section">
-    <h2>Lista de Productos</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>Imagen</th>
-          <th>Nombre</th>
-          <th>Precio</th>
-          <th>Descripción</th>
-          <th>Acciones</th>
-        </tr>
-      </thead>
-      <tbody id="productos-body"></tbody>
-    </table>
-  </section>
+    <section id="productos-section" style="margin-top:3rem;">
+      <h2>Lista de Productos</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody id="productos-body">
+          <!-- <tr>
+            <td><img src="../../img/alfajores.jpeg" alt="Alfajores"></td>
+            <td>Alfajores</td>
+            <td>$2.50</td>
+            <td>Dulce tradicional argentino</td>
+            <td><button class="btn">Editar</button> <button class="btn">Eliminar</button></td>
+          </tr> -->
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <footer>
+    <p>© 2025 Dulces La Tradición</p>
+  </footer>
 
   <script src="index.js"></script>
-    <script type="module" src="../components/notification.js"></script>
-
+  <script type="module" src="../components/notification.js"></script>
 </body>
 </html>

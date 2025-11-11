@@ -18,6 +18,7 @@ let idEdit = '';
 window.addEventListener("DOMContentLoaded", cargarProductos);
 
 async function cargarProductos() {
+  // reemplazar fetch por axios 
   const res = await fetch(API_URL);
   const productos = await res.json();
   console.log('productos', productos);
@@ -26,7 +27,7 @@ async function cargarProductos() {
   productos.forEach(p => {
     productosBody.innerHTML += `
       <tr>
-        <td><img src="${p.imagen}" alt="${p.nombre}"></td>
+        <td><img src="${p.imagen}" alt="${p.nombre}" id="img-producto"></td>
         <td>${p.nombre}</td>
         <td>$${p.precio.toFixed(2)}</td>
         <td>${p.descripcion || "-"}</td>

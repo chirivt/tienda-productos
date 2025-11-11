@@ -1,80 +1,114 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dulces La Tradición</title>
-  <link rel="stylesheet" href="./styles.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dulces La Tradición - Sabores Artesanales</title>
+  <link rel="stylesheet" href="../styles/output.css">
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
-<!-- Botón flotante del carrito -->
-<a href="../cart/index.html" class="boton-carrito-flotante" title="Ver carrito">
-  🛒
-  <span id="contadorCarrito">0</span>
-</a>
-
-<script src="../components/cart-badge.js"></script>
 
 <body>
-  <header>
-    <h1>Dulces La Tradición</h1>
-    <p>Sabores artesanales con historia</p>
-  </header>
+  <!-- HEADER -->
+  <header class="flex items-center gap-6">
+  <a href="../cart/index.html" class="flex items-center gap-2 text-amber-800 hover:text-amber-600 transition relative">
+    <i class="fa-solid fa-cart-shopping text-lg text-amber-700"></i>
+    <span>Carrito</span>
 
-  <main class="productos">
-    <div class="producto">
-      <img src="../../img/alfajores.jpeg" alt="Alfajores" />
-      <h3>Alfajores</h3>
-      <p>$2.50 / unidad</p>
-      <button onclick="comprar('Alfajores', '2.50')">Comprar por WhatsApp</button>
+    <!-- Contador del carrito -->
+    <span id="cart-count" class="absolute -top-2 -right-3 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full hidden">
+      0
+    </span>
+  </a>
+
+  <a href="../login/" class="flex items-center gap-2 text-amber-800 hover:text-amber-600 transition">
+    <i class="fa-solid fa-user text-lg text-amber-700"></i>
+    <span>Login</span>
+  </a>
+</nav>
+    
+  <!-- HERO -->
+  <section class="hero-section text-center py-16 bg-gradient-to-b from-amber-50 to-amber-100">
+    <h1 class="text-4xl font-bold text-amber-800 mb-4">Sabores Artesanales con Historia</h1>
+    <p class="text-lg text-amber-700 mb-6">Disfruta de los dulces tradicionales elaborados con amor y pasión venezolana.</p>
+    <a href="#productos" class="bg-amber-700 text-white px-5 py-2 rounded-lg hover:bg-amber-600 transition">Descubre Nuestros Productos</a>
+  </section>
+
+  <!-- PRODUCTOS -->
+  <section class="productos-section p-8 text-center" id="productos">
+    <h2 class="text-3xl font-semibold mb-6 text-amber-800">Nuestros Dulces Más Populares</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      
+      <!-- Producto 1 -->
+      <div class="producto-card border rounded-lg p-4 shadow hover:shadow-lg transition">
+        <img src="../../img/alfajores.jpeg" alt="Alfajores" class="mx-auto rounded-lg w-48 h-48 object-cover mb-3">
+        <h3 class="text-xl font-semibold text-amber-800">Alfajores</h3>
+        <p class="text-amber-700">Suaves y rellenos con dulce de leche artesanal.</p>
+        <span class="price block text-lg font-bold mt-2 text-amber-800">$2.50</span>
+        <button class="btn add-to-cart bg-amber-700 text-white mt-3 px-4 py-2 rounded-lg hover:bg-amber-600 transition"
+          data-nombre="Alfajores"
+          data-precio="2.50"
+          data-imagen="../../img/alfajores.jpeg">
+          Añadir al carrito
+        </button>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="producto-card border rounded-lg p-4 shadow hover:shadow-lg transition">
+        <img src="../../img/catalinas.jpg" alt="Catalinas" class="mx-auto rounded-lg w-48 h-48 object-cover mb-3">
+        <h3 class="text-xl font-semibold text-amber-800">Catalinas</h3>
+        <p class="text-amber-700">El clásico sabor criollo con papelón y anís.</p>
+        <span class="price block text-lg font-bold mt-2 text-amber-800">$1.50</span>
+        <button class="btn add-to-cart bg-amber-700 text-white mt-3 px-4 py-2 rounded-lg hover:bg-amber-600 transition"
+          data-nombre="Catalinas"
+          data-precio="1.50"
+          data-imagen="../../img/catalinas.jpg">
+          Añadir al carrito
+        </button>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="producto-card border rounded-lg p-4 shadow hover:shadow-lg transition">
+        <img src="../../img/galletas chispas de chocolate.jpg" alt="Galletas con chispas" class="mx-auto rounded-lg w-48 h-48 object-cover mb-3">
+        <h3 class="text-xl font-semibold text-amber-800">Galletas con chispas</h3>
+        <p class="text-amber-700">Crujientes y llenas de sabor a chocolate.</p>
+        <span class="price block text-lg font-bold mt-2 text-amber-800">$2.00</span>
+        <button class="btn add-to-cart bg-amber-700 text-white mt-3 px-4 py-2 rounded-lg hover:bg-amber-600 transition"
+          data-nombre="Galletas con chispas"
+          data-precio="2.00"
+          data-imagen="../../img/galletas chispas de chocolate.jpg">
+          Añadir al carrito
+        </button>
+      </div>
+
+      <!-- Producto 4 -->
+      <div class="producto-card border rounded-lg p-4 shadow hover:shadow-lg transition">
+        <img src="../../img/polvorosas.jpg" alt="Polvorosas" class="mx-auto rounded-lg w-48 h-48 object-cover mb-3">
+        <h3 class="text-xl font-semibold text-amber-800">Polvorosas</h3>
+        <p class="text-amber-700">Delicadas y dulces, se derriten en la boca.</p>
+        <span class="price block text-lg font-bold mt-2 text-amber-800">$1.50</span>
+        <button class="btn add-to-cart bg-amber-700 text-white mt-3 px-4 py-2 rounded-lg hover:bg-amber-600 transition"
+          data-nombre="Polvorosas"
+          data-precio="1.50"
+          data-imagen="../../img/polvorosas.jpg">
+          Añadir al carrito
+        </button>
+      </div>
+
     </div>
+  </section>
 
-    <div class="producto">
-      <img src="../../img/catalinas.jpg" alt="Catalinas" />
-      <h3>Catalinas</h3>
-      <p>$1.50 / unidad</p>
-      <button onclick="comprar('Catalinas', '1.50')">Comprar por WhatsApp</button>
-    </div>
-
-    <div class="producto">
-      <img src="../../img/galletas chispas de chocolate.jpg" alt="Galletas con chispas" />
-      <h3>Galletas con chispas</h3>
-      <p>$2.00 / unidad</p>
-      <button onclick="comprar('Galletas con chispas', '2.00')">Comprar por WhatsApp</button>
-    </div>
-
-    <div class="producto">
-      <img src="../../img/galletas de avena.jpg" alt="Galletas de avena" />
-      <h3>Galletas de avena</h3>
-      <p>$1.80 / unidad</p>
-      <button onclick="comprar('Galletas de avena', '1.80')">Comprar por WhatsApp</button>
-    </div>
-
-    <div class="producto">
-      <img src="../../img/galletas.jpg" alt="Galletas de chocolate" />
-      <h3>Galletas de chocolate</h3>
-      <p>$2.20 / unidad</p>
-      <button onclick="comprar('Galletas de chocolate', '2.20')">Comprar por WhatsApp</button>
-    </div>
-
-    <div class="producto">
-      <img src="../../img/palmeritas.jpg" alt="Palmeritas" />
-      <h3>Palmeritas</h3>
-      <p>$1.00 / unidad</p>
-      <button onclick="comprar('Palmeritas', '1.00')">Comprar por WhatsApp</button>
-    </div>
-
-    <div class="producto">
-      <img src="../../img/polvorosas.jpg" alt="Polvorosas" />
-      <h3>Polvorosas</h3>
-      <p>$1.50 / unidad</p>
-      <button onclick="comprar('Polvorosas', '1.50')">Comprar por WhatsApp</button>
-    </div>
-  </main>
-
-  <footer>
+  <!-- FOOTER -->
+  <footer class="p-4 bg-amber-100 text-center text-amber-800">
     <p>© 2025 Dulces La Tradición. Todos los derechos reservados.</p>
+    <p>Elaborado por <strong>Josue Chirivi De Guanda</strong> —
+      <a href="https://github.com/chirivt" class="text-amber-700 hover:underline" target="_blank">github.com/chirivt</a>
+    </p>
   </footer>
 
-  <script src="./main.js"></script>
+  <script src="index.js"></script>
+  <script type="module" src="../components/notification.js"></script>
 </body>
 </html>
