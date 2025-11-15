@@ -14,6 +14,8 @@ loginRouter.post("/", async (req,res) =>{
 
     const correo = String(email).toLowerCase().trim();
 
+    console.log('correo en login controller:', correo);
+
     //comprobar si el usuario existe en la base de datos
     const userExist = await User.findOne({ email: correo });
 

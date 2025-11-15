@@ -46,6 +46,21 @@ document.addEventListener("DOMContentLoaded", () => {
     html += "</tbody></table>";
     cartItemsContainer.innerHTML = html;
     totalPriceElement.textContent = `Total: $${total.toFixed(2)}`;
+    const clearCartBtn = document.getElementById("clear-cart-btn");
+
+if (clearCartBtn) {
+  clearCartBtn.addEventListener("click", () => {
+    const carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+    if (carrito.length === 0) return alert("Tu carrito ya está vacío 🍬");
+
+    if (confirm("¿Deseas vaciar todo el carrito? 🧁")) {
+      localStorage.removeItem("carrito");
+      renderCarrito();
+      alert("Carrito vaciado correctamente 🧹");
+    }
+  });
+}
+
   }
 
   // ✅ Enviar pedido a WhatsApp

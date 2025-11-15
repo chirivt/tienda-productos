@@ -1,151 +1,327 @@
- /* === Paleta artesanal === */
-    :root {
-      --color-primario: #a06a4f; /* Marrón artesanal */
-      --color-secundario: #f4e3c1; /* Crema */
-      --color-acento: #d19b7c; /* Rosado cálido */
-      --color-texto: #3b2e2a;
-      --color-blanco: #fff;
-    }
+/* ======================================================
+   ESTILOS GENERALES - DULCES LA TRADICIÓN
+   Autor: Josue Chirivi
+   ====================================================== */
 
-    body {
-      font-family: "Roboto", sans-serif;
-      margin: 0;
-      color: var(--color-texto);
-      background-color: var(--color-secundario);
-    }
+/* ---------- VARIABLES DE COLOR ---------- */
+:root {
+  --color-fondo: #fffaf6;
+  --color-primario: #8b4513;
+  --color-secundario: #d2691e;
+  --color-acento: #b45f1a;
+  --color-texto: #4a2c2a;
+  --color-suave: #f5e1ce;
+}
 
-    /* Navbar */
-    nav {
-      background-color: var(--color-primario);
-      color: var(--color-blanco);
-      padding: 1rem 2rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    nav img {
-      height: 60px;
-      border-radius: 50%;
-    }
-    nav h1 {
-      font-size: 1.5rem;
-      margin-left: 0.5rem;
-      display: inline;
-      vertical-align: middle;
-    }
-    nav ul {
-      list-style: none;
-      display: flex;
-      gap: 1.5rem;
-    }
-    nav ul li a {
-      color: var(--color-blanco);
-      text-decoration: none;
-      font-weight: 500;
-      transition: color 0.3s;
-    }
-    nav ul li a:hover {
-      color: var(--color-acento);
-    }
+/* ---------- RESETEO Y TIPOGRAFÍA ---------- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-    /* Hero Section */
-    .hero-section {
-      background: url('../../img/fondo-dulces.jpg') center/cover no-repeat;
-      position: relative;
-      text-align: center;
-      color: var(--color-blanco);
-      padding: 7rem 1rem;
-    }
-    .hero-section::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.4);
-    }
-    .hero-section .container {
-      position: relative;
-      z-index: 1;
-    }
-    .hero-section h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-    .hero-section p {
-      font-size: 1.2rem;
-      margin-bottom: 1.5rem;
-    }
-    .btn {
-      background-color: var(--color-acento);
-      color: var(--color-blanco);
-      padding: 0.8rem 1.5rem;
-      border: none;
-      border-radius: 25px;
-      text-decoration: none;
-      font-weight: bold;
-      transition: background 0.3s;
-    }
-    .btn:hover {
-      background-color: var(--color-primario);
-    }
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
-    /* Productos */
-    .productos-section {
-      padding: 4rem 2rem;
-      background-color: var(--color-blanco);
-    }
-    .productos-section h2 {
-      text-align: center;
-      margin-bottom: 2rem;
-      color: var(--color-primario);
-    }
-    .productos-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2rem;
-      justify-items: center;
-    }
-    .producto-card {
-      background-color: var(--color-secundario);
-      border-radius: 15px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-      overflow: hidden;
-      text-align: center;
-      width: 100%;
-      transition: transform 0.3s;
-    }
-    .producto-card:hover {
-      transform: translateY(-8px);
-    }
-    .producto-card img {
-      width: 100%;
-      height: 220px;
-      object-fit: cover;
-    }
-    .producto-info {
-      padding: 1rem;
-    }
-    .producto-info h3 {
-      margin: 0.5rem 0;
-      color: var(--color-primario);
-    }
-    .producto-info p {
-      color: #5a4a42;
-    }
-    .producto-info .price {
-      display: block;
-      margin: 1.5rem 0;
-      font-weight: bold;
-      color: var(--color-primario);
-    }
+a {
+  text-decoration: none;
+  color: #EDF2F8;
+}
 
-    /* Footer */
-    footer {
-      background-color: var(--color-primario);
-      color: var(--color-blanco);
-      text-align: center;
-      padding: 2rem 1rem;
-    }
-    footer a {
-      color: var(--color-acento);
-      text-decoration: none;
-    }
+h1, h2, h3 {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- HEADER GENERAL ---------- */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--color-primario);
+  color: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.navigation {
+  display: flex;
+  gap: 1rem;
+}
+
+.navigation a {
+  color: white;
+  font-weight: 500;
+  padding: 0.4rem 0.8rem;
+  border-radius: 6px;
+  transition: background 0.3s ease;
+}
+
+.navigation a:hover {
+  background-color: var(--color-acento);
+}
+
+/* ---------- BOTONES ---------- */
+.btn {
+  display: inline-block;
+  background-color: var(--color-secundario);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.btn:hover {
+  background-color: var(--color-acento);
+}
+
+/* ---------- FORMULARIOS ---------- */
+form {
+  background-color: #fff;
+  max-width: 400px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+}
+
+form h2 {
+  color: var(--color-primario);
+  margin-bottom: 1rem;
+}
+
+form input {
+  width: 100%;
+  padding: 0.7rem;
+  margin: 0.6rem 0;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+form input:focus {
+  outline: none;
+  border-color: var(--color-secundario);
+  box-shadow: 0 0 4px var(--color-suave);
+}
+
+/* ---------- TABLAS (ADMIN) ---------- */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  margin-top: 1.5rem;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+thead {
+  background-color: var(--color-secundario);
+  color: white;
+}
+
+th, td {
+  padding: 0.8rem;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+tr:hover {
+  background-color: #fff3e0;
+}
+
+/* ---------- SECCIONES GENERALES ---------- */
+section {
+  padding: 2rem;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: var(--color-primario);
+  text-align: center;
+}
+
+/* ---------- FOOTER ---------- */
+footer {
+  text-align: center;
+  background-color: var(--color-suave);
+  color: var(--color-texto);
+  padding: 1rem;
+  margin-top: auto;
+  font-size: 0.95rem;
+}
+
+/* ---------- TARJETAS DE PRODUCTO ---------- */
+.producto-card {
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
+}
+
+.producto-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 5px 12px rgba(0, 0, 0, 0.12);
+}
+
+.producto-card img {
+  border-radius: 10px;
+  width: 100%;
+  max-width: 220px;
+  height: 220px;
+  object-fit: cover;
+  margin-bottom: 0.8rem;
+}
+
+/* ---------- HERO (LANDING) ---------- */
+.hero-section {
+  background: linear-gradient(to bottom, #8B4513, #8B4513);
+  padding: 4rem 1rem;
+  text-align: center;
+}
+
+.hero-section h1 {
+  color: #EDF2F8;
+  font-size: 2.2rem;
+}
+
+.hero-section p {
+  color: #EDF2F8;
+  margin: 1rem 0 2rem;
+}
+
+/* ---------- CARRITO ---------- */
+#cart-items {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #fff;
+  border-radius: 8px;
+  padding: 1rem;
+  width: 90%;
+  max-width: 600px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 768px) {
+  .header {
+    flex-direction: column;
+    gap: 0.6rem;
+    text-align: center;
+  }
+
+  .navigation {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  form {
+    width: 90%;
+  }
+.notification-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.25s ease;
+  z-index: 998;
+}
+.notification-overlay.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.notification-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 999;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+
+.notification-modal {
+    position: fixed;
+    top: -150px; /* inicia fuera de pantalla */
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    width: 300px;
+    max-width: 90%;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+    z-index: 1000;
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s ease;
+}
+
+.notification-modal.show {
+    top: 50px; /* posición visible */
+    opacity: 1;
+}
+
+.notification-modal .modal-header h3 {
+    font-size: 1.2rem;
+    color: #d97706;
+    margin-bottom: 0.5rem;
+}
+
+.notification-modal .modal-img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    margin-bottom: 0.5rem;
+    border-radius: 8px;
+}
+
+.notification-modal p {
+    font-size: 0.95rem;
+    color: #374151;
+    margin-bottom: 1rem;
+}
+
+.notification-modal .notification-close {
+    background-color: #f59e0b;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.notification-modal .notification-close:hover {
+    background-color: #d97706;
+}
+}
