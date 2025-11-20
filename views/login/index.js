@@ -12,20 +12,29 @@ form.addEventListener("submit",async  e =>{
             password: passwordInput.value
             }
 
-            console.log("Intentando iniciar sesión con:", user);
+            console.log("Intentando iniciar sesión con:", user.email);
             
 
             const response = await axios.post("/api/login",user);
             console.log('response is:', response);
             
-
             console.log('Login exitoso');
+
+            if (response.status === 200) {
+                console.log('Redirigiendo al admin');
+                window.location.pathname =  `/admin/`
+            } 
+
+
             
-            window.location.pathname =  `/admin/`
   
         
     } catch (error) {
         console.log(error)
-        errorText.innerHTML = error.response.data.error
+         console.log('Redirigiendo al usuario');
+        
+
+        //  Redirige al home
+         window.location.pathname =  `/`
     }
         })

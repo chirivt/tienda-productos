@@ -32,8 +32,8 @@ async function cargarProductos() {
         <td>$${p.precio.toFixed(2)}</td>
         <td>${p.descripcion || "-"}</td>
         <td>
-          <button onclick="editarProducto('${p._id}')">✏️</button>
-          <button onclick="eliminarProducto('${p._id}')">🗑️</button>
+          <button style="font-size:24px; background: white" onclick="editarProducto('${p._id}')">✏️</button>
+          <button style="font-size:24px; background: white" onclick="eliminarProducto('${p._id}')">🗑️</button>
         </td>
       </tr>
     `;

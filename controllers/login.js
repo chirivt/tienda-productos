@@ -57,7 +57,18 @@ loginRouter.post("/", async (req,res) =>{
         // httpOnly lo que hace es que no se pueda acceder a la cookie desde el frontend
         httpOnly: true
     });
-    return res.sendStatus(200)
+
+     if (userExist.email === process.env.EMAIL_USER) {
+                console.log('Redirigiendo al admin');
+                
+                return res.sendStatus(200)
+               
+            } else {
+                console.log('Redirigiendo al usuario');
+                return res.sendStatus(400)
+                
+    
+            }
 
 });
 

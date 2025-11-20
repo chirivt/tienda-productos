@@ -84,6 +84,18 @@ h1, h2, h3 {
   transition: background-color 0.25s ease;
 }
 
+.btn-ingresar {
+  
+  background-color: var(--color-secundario);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.6rem 1.2rem;
+  font-weight: 500;
+  cursor: pointer;
+
+}
+
 .btn:hover {
   background-color: var(--color-acento);
 }
