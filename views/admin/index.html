@@ -1,38 +1,40 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Panel de Administración | Dulces La Tradición</title>
   <link rel="stylesheet" href="index.css">
   <link rel="stylesheet" href="../styles/output.css">
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 
 <body class="bg-amber-50 min-h-screen flex flex-col">
 
   <!-- HEADER -->
-  <header class="header flex flex-col sm:flex-row justify-between items-center p-4 bg-amber-100 shadow-md">
-  <h1 class="logo text-2xl font-bold text-amber-800 mb-2 sm:mb-0">🍪 Dulces La Tradición</h1>
-  <nav class="navigation flex gap-4 items-center">
+  <header class="header flex flex-col sm:flex-row justify-between items-center p-4 bg-amber-100 shadow-md gap-2">
+    <h1 class="logo text-2xl font-bold text-amber-800 text-center sm:text-left">🍪 Dulces La Tradición</h1>
 
-    <!-- Botón de Cerrar Sesión -->
-    <a href="/" class="btn bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-500 transition">
-      Inicio
-    </a>
-       <a href="../index.html" class="btn bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-500 transition">
-      Cerrar Sesión
-    </a>
-  </nav>
-</header>
-
+    <nav class="navigation flex gap-3 flex-wrap justify-center sm:justify-end">
+      <a href="/" class="btn bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-500 transition w-full sm:w-auto text-center">
+        Inicio
+      </a>
+      <a href="../index.html" class="btn bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-500 transition w-full sm:w-auto text-center">
+        Cerrar Sesión
+      </a>
+    </nav>
+  </header>
 
   <!-- MAIN -->
   <main class="flex-1 p-4 sm:p-8">
+
+    <!-- FORMULARIO -->
     <form id="producto-form" class="bg-white shadow-md rounded-lg p-4 sm:p-6 mb-6">
-      <h2 class="text-xl font-semibold mb-4 text-amber-800">Agregar / Editar Producto</h2>
+      <h2 class="text-xl font-semibold mb-4 text-amber-800 text-center sm:text-left">Agregar / Editar Producto</h2>
 
       <input type="hidden" id="producto-id">
+
       <div class="flex flex-col sm:flex-row sm:gap-4 mb-4">
         <input id="nombre" type="text" placeholder="Nombre del producto" required class="flex-1 mb-2 sm:mb-0 p-2 border rounded-md">
         <input id="descripcion" type="text" placeholder="Descripción" class="flex-1 p-2 border rounded-md">
@@ -43,17 +45,23 @@
         <input id="imagen" type="text" placeholder="URL de imagen" required class="flex-1 p-2 border rounded-md">
       </div>
 
-      <div class="flex gap-2 flex-wrap">
-        <button type="submit" class="btn bg-amber-700 text-white px-4 py-2 rounded-md hover:bg-amber-600 transition">Guardar</button>
-        <button type="button" id="cancelar-edicion" style="display:none;" class="btn bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500 transition">Cancelar</button>
+      <div class="flex gap-2 flex-wrap justify-center sm:justify-start">
+        <button type="submit" class="btn bg-amber-700 text-white px-4 py-2 rounded-md hover:bg-amber-600 transition">
+          Guardar
+        </button>
+
+        <button type="button" id="cancelar-edicion" style="display:none;" class="btn bg-gray-400 text-white px-4 py-2 rounded-md hover:bg-gray-500 transition">
+          Cancelar
+        </button>
       </div>
     </form>
 
     <!-- LISTA DE PRODUCTOS -->
     <section id="productos-section">
-      <h2 class="text-xl font-semibold mb-4 text-amber-800">Lista de Productos</h2>
-      <div class="overflow-x-auto">
-        <table class="w-full border-collapse">
+      <h2 class="text-xl font-semibold mb-4 text-amber-800 text-center sm:text-left">Lista de Productos</h2>
+
+      <div class="overflow-x-auto w-full">
+        <table class="w-full border-collapse min-w-[700px]">
           <thead class="bg-amber-200">
             <tr>
               <th class="p-2 text-left border">Imagen</th>
